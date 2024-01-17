@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="">
+                <div class="card-body align-items-center m-4">
                     <form action="{{ route('category.store') }}" method="post">
                         @csrf
 

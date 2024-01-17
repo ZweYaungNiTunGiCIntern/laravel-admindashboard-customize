@@ -16,7 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::paginate('10');
         return view('item.index',compact('items'));
     }
 
@@ -66,9 +66,11 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
-        return view('item.edit',compact('item'));
+        $item=Item::findorFail($id);
+        $categories = Category::all();
+        return view('item.edit',compact('item','categories'));
     }
 
     /**
@@ -82,7 +84,7 @@ class ItemController extends Controller
     {
         $item->name = $request->name;
         $item->price= $request->price;
-        $item->category = $request->category;
+        $item->category_id = $request->category_id;
         $item->expire_date = $request->expire_date;
         $item->update();
         return redirect()->route('item.index')->with('update','Updated successfully');
@@ -100,6 +102,6 @@ class ItemController extends Controller
             $item->delete();
 
         }
-        return redirect()->back()->with('delete','You have deleted one category');
+        return redirect()->back()->with('delete','You have deleted one item');
     }
 }

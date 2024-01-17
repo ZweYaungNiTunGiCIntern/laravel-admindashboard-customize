@@ -6,7 +6,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mt-5 md-4 shadow">
-
                 <div class="card-body">
                     @if(session()->get('success'))
                         <div class="alert alert-success">
@@ -19,21 +18,19 @@
                         </div>
                     @endif
                     @if(session()->get('delete'))
-                        <div class="alert alert-error">
+                        <div class="alert alert-danger">
                             {{ session()->get('delete') }}
                         </div>
                     @endif
-                    <a href="{{route('item.create')}}" class="btn btn-outline-success">
-                        <i class="fas fa-plus"></i>
-                    </a>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">item ID</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Expire Date</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +39,7 @@
                                     <th scope="row"> {{ $loop->index + 1 }}</th>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td>{{ $item->category_id}}</td>
+                                    <td>{{ $item->category->name}}</td>
                                     <td>{{ $item->expire_date}}</td>
                                     <td>
                                         <div class="d-flex justify-content-right">
@@ -53,8 +50,9 @@
                                                 <i class="fa fa-info"></i>
                                             </a>
                                             <div>
-                                                <form action="{{route('item.destroy',$item->id) }}" method="post" class="d-inline-block">
+                                                <form action="{{route('item.destroy',$item->id) }}" method="post" class="d-inline-block" onsubmit="return confirm('Are you sure to delete this item');" >
                                                     @method('delete')
+
                                                     @csrf
                                                     <button class="btn btn-outline-danger">
 
@@ -71,6 +69,7 @@
                     </table>
                 </div>
             </div>
+            {{ $items->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>

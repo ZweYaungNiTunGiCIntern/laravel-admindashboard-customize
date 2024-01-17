@@ -6,7 +6,7 @@
             <div class="col-md-7">
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="card-body align-items-center m-4">
                         <form action="{{ route('category.update', $category->id) }}" method="POST">
                             @csrf
                             @method('put')

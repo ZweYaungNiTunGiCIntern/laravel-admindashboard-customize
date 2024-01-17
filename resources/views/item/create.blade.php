@@ -3,9 +3,9 @@
 @section('category')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="card">
-                <div class="">
+                <div class="card-body align-items-center m-4">
                     <form action="{{ route('item.store') }}" method="post">
                         @csrf
 

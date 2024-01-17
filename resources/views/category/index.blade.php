@@ -19,13 +19,10 @@
                         </div>
                     @endif
                     @if(session()->get('delete'))
-                        <div class="alert alert-error">
+                        <div class="alert alert-danger">
                             {{ session()->get('delete') }}
                         </div>
                     @endif
-                    <a href="{{route('category.create')}}" class="btn btn-outline-success">
-                        <i class="fas fa-plus"></i>
-                    </a>
                     <table class="table">
                         <thead>
                             <tr>
@@ -48,7 +45,7 @@
                                                 <i class="fa fa-info"></i>
                                             </a>
                                             <div>
-                                                <form action="{{route('category.destroy',$category->id) }}" method="post" class="d-inline-block">
+                                                <form action="{{route('category.destroy',$category->id) }}" method="post" class="d-inline-block" onsubmit="return confirm('Are you sure to delete this item');">
                                                     @method('delete')
                                                     @csrf
                                                     <button class="btn btn-outline-danger">
