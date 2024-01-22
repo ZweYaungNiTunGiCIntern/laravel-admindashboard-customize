@@ -30,6 +30,7 @@
                                 <th scope="col">Price</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Expire Date</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -41,6 +42,10 @@
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->category->name}}</td>
                                     <td>{{ $item->expire_date}}</td>
+                                    <td>
+                                        <!-- Display the image -->
+                                        <img src="{{ asset('storage/gallery/'. $item->image) }}" alt="{{ $item->name }}" style="max-width: 50px; max-height: 50px;" >
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-right">
                                             <a href="{{route('item.edit',$item->id) }}" class="btn btn-outline-warning"">

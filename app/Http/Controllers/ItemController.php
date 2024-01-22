@@ -40,11 +40,18 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+
+        $image=$request->image;
+        $newName="gallery_".uniqid().".".$image->extension();
+        $image->storeAs("public/gallery",$newName);
+
+
         $item = new Item();
         $item->name= $request->name;
         $item->price= $request->price;
         $item->category_id= $request->category_id;
         $item->expire_date = $request->expire_date;
+        $item->image = $newName;
         $item->save();
         return redirect()->route('item.index')->with('success', 'New item successfully added.');;
     }
@@ -82,6 +89,19 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
+        if($request->image){
+            $image=$request->image;
+            $newName="gallery_".uniqid().".".$image->extension();
+            $image->storeAs("public/gallery",$newName);
+            $item->name = $request->name;
+            $item->price= $request->price;
+            $item->category_id = $request->category_id;
+            $item->expire_date = $request->expire_date;
+            $item->image = $newName;
+            $item->update();
+            return redirect()->route('item.index')->with('update','Updated successfully');
+
+        }
         $item->name = $request->name;
         $item->price= $request->price;
         $item->category_id = $request->category_id;

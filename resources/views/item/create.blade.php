@@ -6,7 +6,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body align-items-center m-4">
-                    <form action="{{ route('item.store') }}" method="post">
+                    <form action="{{ route('item.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
 
@@ -43,6 +43,16 @@
 
                                 @enderror
                         </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Upload Image<small class="text-danger"></small></label>
+                            <input type="file" name="image" class="form-control @error('image')is-invalid @enderror " >
+                                @error('image')
+                                    <div class="text-danger">{{ $message }}</div>
+
+                                @enderror
+
+                        </div>
+
 
                         <div class="mb-4">
                             <a href="{{ route('item.index') }}" class="btn btn-outline-dark">Back</a>

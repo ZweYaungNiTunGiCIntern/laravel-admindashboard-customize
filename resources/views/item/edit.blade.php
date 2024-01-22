@@ -8,7 +8,7 @@
 
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('item.update', $item->id) }}">
+                        <form method="POST" action="{{ route('item.update', $item->id) }}" enctype="multipart/form-data" >
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -52,7 +52,18 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="row justify-content-center">
+                            <div class="mb-3">
+                                <label  class="form-label">Upload Image<small class="text-danger"></small></label>
+                                <img src="{{ asset('storage/gallery/'. $item->image) }}" alt="{{ $item->name }}" style="max-width: 50px; max-height: 50px;" >
+                                <input type="file" name="image" class="form-control @error('image')is-invalid @enderror " >
+                                    @error('image')
+                                        <div class="text-danger">{{ $message }}</div>
+
+                                    @enderror
+
+                            </div
+
+                            <div class="row justify-content-between">
                                 <a href="{{ route('item.index') }}" class="btn btn-dark justify-right">Cancel</i></a>
                                 <button type="submit" class="btn btn-primary ">Update</button>
                             </div>

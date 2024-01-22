@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->integer('price');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->date('expire_date');
+            $table->string('image');
             $table->timestamps();
         });
     }

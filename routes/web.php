@@ -2,7 +2,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Item;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    $items= Item::all();
+    return view('index',compact('items'));
 });
 
 Auth::routes();
