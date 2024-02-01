@@ -10,17 +10,15 @@
     <div class="row"  >
         @foreach ($items as $item)
       <!-- Card 1 -->
-        <div class="col-md-2">
-        <div class="card">
-            <img src="{{ asset('storage/gallery/'. $item->image) }}" alt="{{ $item->name }}" class="card-img-top" style="max-height: 120px" >
-          <div class="card-body">
+        <div class="col-md-2" >
+        <div class="card"  style="height: 300px ;">
+            <img src="{{ asset('storage/gallery/'. $item->image) }}" alt="{{ $item->name }}" class="card-img-top" style="max-height: 200px" >
+          <div class="card-body" >
             <h5 class="card-title">{{ $item->name }}</h5>
             <p class="card-text">{{ $item->price }}</p>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
                 <!-- Left-aligned button -->
-                <div>
-                  <button class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> In stock</button>
-                </div>
+
 
                 <!-- Right-aligned button -->
                 <div>
